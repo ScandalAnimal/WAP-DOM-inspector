@@ -23,3 +23,12 @@
 	padding: 2px;
 	display: inline-block;
 }
+
+.dom-inspector-row span {
+	display: none;
+}
+
+.dom-inspector-selected {
+	background-color: #f99;
+	border: 3px solid #c00;
+}
