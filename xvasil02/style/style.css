@@ -1,0 +1,377 @@
+@charset "utf-8";
+
+@media (max-width: 620px) {
+    body {
+        width: auto
+    }
+    #bus {
+		display: none;
+    }
+
+}
+@media (max-width: 650px) {
+	#tarif_state {
+		display: none;
+    }
+}
+
+@media (max-width: 1000px) {
+    #kamion {
+        display: none;
+    }
+    #index_right {
+		padding-left: 5px;
+    }
+    #index_right p {
+		margin-left: 40px;
+    }
+    #vw {
+		margin-left: 80px;
+    }
+    #js_news {
+		margin-bottom: 25px;
+		margin-left: 40px;
+    }
+    #tarif_list {
+		margin-left: -120px;
+    }
+}
+
+html {
+  background: url(pics/background-white.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+}
+
+body {
+	width: 100%;
+	height: 100%;
+	max-width: 1400px;
+	font-style : normal;
+	font-family: Arial,Helvetica, sans-serif;
+	font-size: 11pt;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#contacts_col1, #contacts_col2 {
+	height: 350px;
+}
+a {
+	text-decoration: none;
+}
+
+h1 {
+	text-align: center;
+}
+
+h1 span {
+	font: normal 30px/36px Cinzel Decorative,Helvetica,sans-serif;
+	color:#837e7c;
+	font-size: 32pt;
+}
+
+#quote {
+	font: normal 30px/36px Cinzel Decorative,Helvetica,sans-serif;
+	color:#b6b6b4;
+	text-align: center;
+	font-size: 17pt;
+	max-width: 1024px;
+	margin-left: auto;
+	margin-right: auto;
+	padding-bottom: 15px;
+	border-bottom: 1pt solid #726e6d;
+}
+
+q {
+	quotes: "«" "»";
+}
+
+#menu {
+	padding-top: 8px;
+	text-align: center;
+}
+
+#menu li {
+	display: inline;
+	text-decoration: none;
+	margin-right: 30px;
+
+}
+
+#menu li a {
+	color: #625d5d;
+}
+
+#menu li a:hover {
+	text-decoration: underline;
+}
+
+#contacts_content, #main, #news_content, #vehicles_content, .vehicle_content, #tarif_content, #services_content, #map_content, #contract_content, #rent_content, #references_content, #seo_content {
+	padding-top: 20px;
+	max-width: 1024px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+h2 {
+	color:#625d5d;
+	padding-left: 50pt;
+	width: 350px;
+	color: #dc381f;
+}
+
+h3 {
+	color: #837e7c;
+	padding-left: 75pt;
+}
+
+h4 {
+	font: normal 30px/36px Helvetica,sans-serif;
+	color:#504a4b;
+	font-size: 21pt; 
+	margin-top: -1pt;
+	text-align: center;
+	border: 1px dashed black;
+}
+
+h5 {
+	color: #726e6d;
+}
+
+#kamion {
+	margin-left: 50px;
+}
+
+.data {
+	color: #726e6d;
+	padding-left: 75pt;
+}
+
+.main_data {
+	width: 500px;
+}
+
+#main p {
+	width: 500px;
+}
+
+#index_left {
+	float: left;
+	width: 500px;
+	padding-right: 150px;
+	border-right: 1px solid #b6b6b4;
+}
+
+#index_right {
+	float: left;
+	width: 200px;
+}
+
+#index_right p, #js_news {
+	width: 200px;
+	padding-left: 50px;
+	color: #726e6d;
+
+}
+
+#index_right #js_title {
+	text-decoration: underline;
+	cursor: pointer;
+}
+
+#index_right p a {
+	font-size: 12pt;
+	color: #504a4b;
+	text-decoration: underline;
+}
+
+#news_content h2 {
+	width: 500px;
+}
+
+.news_imgs {
+	float: right;
+}
+
+.bottom_img {
+	padding-right: 60px;
+	padding-top: 20px;
+}
+
+.data a {
+	text-decoration: underline;
+	color: #726e6d;
+}
+
+.tel {
+	padding-left: 85pt;
+}
+
+#contacts_col1 {
+	float: left;
+	margin-left: 135px;
+}
+
+#contacts_col2 {
+	float: right;
+	padding-left: 40px;
+}
+/*
+#contacts_col2 {
+	background: url(pics/owners.JPG) no-repeat right top;
+	padding-top: 50px
+}*/
+
+#vehicles_list {
+	float: left;
+	clear: both;
+}
+
+.vehicle_class {
+	font-size: 18pt;
+	color: #dc381f;
+	font-weight: bold;
+	padding-left: 80px;
+	padding-bottom: 20px;
+	padding-top: 20px;
+	list-style-type: none;
+}
+
+.vehicle_inner_list {
+	padding-left: 120px;
+}
+
+.vehicle_inner_class {
+	height: 25px;
+}
+
+.vehicle_inner_class a {
+	color: #726e6d;
+}
+
+.vehicle_inner_class a:hover {
+	text-decoration: underline;
+}
+
+
+.vehicle_content p {
+	width: 550px;
+	padding-left: 100px;
+}
+
+.first_img, .technical {
+	padding-left: 100px;
+}
+
+.img_back {
+	margin-left: 75px;
+
+}
+
+#rent_content p {
+	padding-left: 125px;
+	width: 500px;
+	color: #726e6d;
+}
+
+#tarif_list {
+	float: left;
+	clear: both;
+	padding-left: 160px;
+	list-style-type: none;
+	width: 300px;
+	text-align: center;
+}
+
+#tarif_prizes {
+	float: left;
+	padding-left: 20px;
+	list-style-type: none;
+	width: 100px;
+	text-align: center;
+}
+
+#tarif_state {
+	float: left;
+	padding-left: 20px;
+	list-style-type: none;
+	width: 150px;
+	text-align: center;
+}
+
+#tarif_state .now {
+	color: #e41b17;
+	font-weight: bold;
+}
+
+.tarif_class {
+	border-bottom: 1px dashed grey;
+	padding-bottom: 12px;
+	padding-top: 12px;
+}
+
+.tarif_class a {
+	color: #726e6d;
+}
+
+.contract a {
+	font-size: 16pt;
+	font-weight: bold;
+	padding-left: 50pt;
+	width: 350px;
+	color: #dc381f;
+	text-decoration: underline;
+}
+
+#contract_content p {
+	padding-left: 100px;
+}
+
+#map_ul {
+	list-style-type: none;
+}
+
+#map_inner_ul {
+	padding-left: 120px;
+}
+
+#list {
+	list-style-type: none;
+}
+
+.inner_list {
+	padding-left: 100px;
+}
+
+.inner_class {
+	padding-bottom: 7px;
+}
+
+
+#footer {
+	float: left;
+	width: 100%;
+	background-color: #aaaaaa;
+	background-repeat: repeat-x;
+	background-position: bottom;
+	height: 100px;
+	text-align: center;
+	padding-top: 12px;
+	padding-bottom: 5pt;
+	font: normal Helvetica,sans-serif;
+	color: #eeeeee;
+}
+
+#footer a {
+	font: normal Helvetica,sans-serif;
+	color: #eeeeee;
+}
+
+#links a {
+	margin-right: 40px;
+	text-decoration: underline;
+}

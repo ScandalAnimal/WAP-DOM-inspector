@@ -1,0 +1,25 @@
+#dom-inspector-output {
+	/*position: fixed;*/
+	width: 30%;
+	z-index: 100;
+	background-color: #bada55;
+	right: 0;
+	top: 0;
+	padding: 3px;
+	position: absolute;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	cursor: pointer;
+}
+
+#dom-inspector-wrapper {
+	width: 70%;
+	z-index: 90;
+}
+
+.dom-inspector-row {
+	border: 2px solid black;
+	margin: 3px;
+	padding: 2px;
+	display: inline-block;
+}
