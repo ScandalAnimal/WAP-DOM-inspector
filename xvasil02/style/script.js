@@ -66,39 +66,64 @@ function getCssPath(Node) {
 
 var DumpNode = function(Node, Lev) {
 	if (((Node.nodeType == NODE_ELEMENT) || (Node.nodeType == NODE_TEXT) || (Node.nodeType == NODE_DOCUMENT)) && (Node.id != "dom-inspector-output")) {
-    	for (var i=1;i<(Lev-1)*3;i++) {
-       		domInspectorOutput += "&nbsp;";
+    	
+		if (Node.nodeName == "BR" || Node.nodeName == "HR") {
+			return;
+		}
+
+		if (Node.nodeType == NODE_TEXT) {
+			var trimmed = Node.nodeValue.trim();
+			if (trimmed == "" || trimmed == "\n") {
+				return;
+			}
+		}
+    	for (var i=0;i<Lev * 3;i++) {
+			domInspectorOutput += "&nbsp;&nbsp;";
+
        	} // for
 
-    var elementCssPath = getCssPath(Node);   	
-    console.log(elementCssPath);
-   	if (Node.nodeType != NODE_TEXT) {
-	   	var name = (!Node.nodeName) ? "" : Node.nodeName; 
-	   	var classes = (!Node.classList) ? "" : Node.classList; 
-   		var id = (!Node.id) ? "" : Node.id; 
-   		var domInspectorId = ((!Node.id) || Node.id === "") ? getNextId() : Node.id;
-   		var domInspectorId1 = domInspectorId + "-cl";
-   		var domInspectorId2 = domInspectorId + "-id";
+	    var elementCssPath = getCssPath(Node);   	
+	    // console.log(Node);
+
+	   	if (Node.nodeType != NODE_TEXT && (Node.parentNode.nodeName != "HEAD" && Node.parentNode.nodeName != "HTML" && Node.nodeName != "HTML" && Node.nodeName != "SCRIPT")) {
+		   	var name = (!Node.nodeName) ? "" : Node.nodeName; 
+		   	var classes = (!Node.classList) ? "" : Node.classList; 
+	   		var id = (!Node.id) ? "" : Node.id; 
+	   		var domInspectorId1 = "cl";
+	   		var domInspectorId2 = "id";
 
 
-   		domInspectorOutput += "<div class='dom-inspector-row'><span>" + elementCssPath + "</span>" + domInspectorId + ": " + name + ": " + "classes: <input type='text' name='" + 
-   				+ domInspectorId1 + "' value='" + classes + "'> id: <input type='text' name='" + domInspectorId2 + "' value='" + id + "'></div><br>"
-   	}
-   	else {
-   		var domInspectorId = (Node.id === undefined) ? getNextId() : Node.id;
-   		var domInspectorId1 = domInspectorId + "-cl";
-   		var domInspectorId2 = domInspectorId + "-id";
-	   	var name = (Node.nodeName === undefined) ? "NAME" : Node.nodeName; 
-   		domInspectorOutput += "<div class='dom-inspector-row'><span>" + elementCssPath + "</span>" + domInspectorId + ": " + name + "</div><br>"
-   	}
+	   		domInspectorOutput += "<div class='dom-inspector-row'><span>" + elementCssPath + "</span>" + name + ": " + "classes: <input type='text' name='" 
+	   				+ domInspectorId1 + "' value='" + classes + "'> id: <input type='text' name='" + domInspectorId2 + "' value='" + id + "'></div><br>";
+	    	DumpNodes (Node.childNodes, Lev+1);
 
-    	DumpNodes (Node.childNodes, Lev);
+	   	}
+	   	else if (Node.parentNode.nodeName == "HEAD" || Node.parentNode.nodeName == "HTML" || Node.nodeName == "HTML" || Node.nodeName == "SCRIPT") {
+	   		var name = (Node.nodeName === undefined) ? "NAME" : Node.nodeName; 
+   			domInspectorOutput += "<div class='dom-inspector-row'><span>" + elementCssPath + "</span>" + name + "</div><br>";
+    		DumpNodes (Node.childNodes, Lev+1);
+				
+	   	}
+	   	else {
+	   		var trimmed = Node.nodeValue.trim();
+	   		// console.log(trimmed);
+	   		if (Node.nodeValue && trimmed != "" && trimmed != "\n") {
+		   		var domInspectorId1 = "cl";
+	   			var domInspectorId2 = "id";
+		   		var name = (Node.nodeName === undefined) ? "NAME" : Node.nodeName; 
+	   			domInspectorOutput += "<div class='dom-inspector-row'><span>" + elementCssPath + "</span>" + name + "</div><br>";
+	    		DumpNodes (Node.childNodes, Lev+1);
+				
+			}   	
+
+	   	}
+
     } // if
  } // DumpNode
 
 var DumpNodes = function (Nodes, Lev) {
 	for(var i=0; i<Nodes.length; i++) {
-    	DumpNode (Nodes[i], (Lev+1));
+    	DumpNode (Nodes[i], Lev);
  	} // for
 
 } // DumpNodes
@@ -112,7 +137,7 @@ function showDOM() {
 	var oldHtml = document.body.innerHTML;
 	document.body.innerHTML = "<div id='dom-inspector-wrapper'>" + oldHtml + "</div><div id='dom-inspector-output'></div>";
 
- 	domInspectorOutput="";
+ 	domInspectorOutput="<h1>DOM tree</h1>";
 
  	var content = document.childNodes;
  	DumpNodes (content, 0);
@@ -120,29 +145,101 @@ function showDOM() {
  
 	document.addEventListener('click', function(e){
     	if (e.target && (e.target.parentNode.id == 'dom-inspector-output' || e.target.parentNode.className == 'dom-inspector-row')) {
-    		// console.log(e.target.firstChild.innerHTML);
+    		// console.log(e.target.firstChild);
     		var elems = document.querySelectorAll(".dom-inspector-selected");
 
 			[].forEach.call(elems, function(el) {
 			    el.classList.remove("dom-inspector-selected");
 			});
 
-			var path = e.target.firstChild.innerHTML;
+			var elems2 = document.querySelectorAll(".dom-inspector-row > span");
+
+ 			[].forEach.call(elems2, function(el) {
+ 				el.classList.remove("dom-inspector-node-selected");
+			});
+
+			var path = e.target.innerHTML;
+			if (e.target.firstChild) {
+				path = e.target.firstChild.innerHTML;
+			}
 			var res = unescapeHTML(path); 
 			// var res = path.replace(new RegExp("\{&gt;}", "g"), ">"); 
-    		console.log(path);
-    		console.log(res);
-    		var element = document.querySelector(res);
-    		if (element) {
-				element.className += ' dom-inspector-selected';	
-    		}
-    		else {
-    			console.log("NULL");
-    		}
+    		// console.log(path);
+    		// console.log(res);
+    		if (res) {
+	    		var element = document.querySelector(res);
+	    		if (element) {
+					element.className += ' dom-inspector-selected';
+					element.scrollIntoView();	
+	    		}
+	    		else {
+	    			console.log("NULL");
+	    		}
+	    	}
 
 
     	}
- 		
+    	else if (e.target && (e.target.parentNode.id != 'dom-inspector-output' && e.target.parentNode.className != 'dom-inspector-row')) {
+ 			var elems2 = document.querySelectorAll(".dom-inspector-selected");
+
+ 			[].forEach.call(elems2, function(el) {
+ 				el.classList.remove("dom-inspector-selected");
+			});
+
+ 			var elems = document.querySelectorAll(".dom-inspector-row > span");
+
+ 			var elementToHighlight;
+ 			var i = 0;
+ 			[].forEach.call(elems, function(el) {
+ 				el.parentNode.classList.remove("dom-inspector-node-selected");
+			    
+			    if (el.textContent == getCssPath(e.target)) {
+			    	i++;
+			    	el.parentNode.className += ' dom-inspector-node-selected';
+		    		if (i == 1) {
+		    			el.parentNode.scrollIntoView();
+		    		}	
+			    	// if (el.nodeType != NODE_TEXT) {
+				    	// elementToHighlight = el;
+					// }
+					// console.log(el);
+			    }
+			    // console.log(el.textContent);
+			});
+
+			if (elementToHighlight) {
+		    	elementToHighlight.parentNode.className += ' dom-inspector-node-selected';
+		    	elementToHighlight.parentNode.scrollIntoView();
+			}
+ 		}
+ 	});
+ 	// document.addEventListener('change', function(e){
+    	// if (e.target && (e.target.parentNode.className == 'dom-inspector-row')) {
+ 			// console.log(e.target);
+ 		// }
+ 	// });
+ 	document.addEventListener('keydown', function(e){
+    	if (e.target && (e.target.parentNode.className == 'dom-inspector-row')) {
+ 			if (e.which == 13) {
+ 				var path = e.target.parentNode.firstChild.innerHTML;
+ 				var elems = document.querySelectorAll(unescapeHTML(path));
+ 				[].forEach.call(elems, function(el) {
+ 					console.log(el);
+ 					if (e.target.name == "cl") {
+ 						el.classList = e.target.value;
+ 					}
+ 					else if (e.target.name == "id") {
+ 						if (e.target.value.indexOf(" ") < 0) {
+	 						el.id = e.target.value;
+ 						}
+ 						else {
+ 							console.log("INVALID ID");
+ 						}
+ 					}
+
+ 				});
+ 			}
+ 		}
  	});
  }
 

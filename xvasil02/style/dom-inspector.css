@@ -1,24 +1,36 @@
 #dom-inspector-output {
-	/*position: fixed;*/
-	width: 30%;
+	position: fixed;
+	width: 33%;
+	/*height: 90%;*/
 	z-index: 100;
-	background-color: #bada55;
+	background-color: #272727;
+	color: #14a76c;
+	border: 4px solid #14a76c;
 	right: 0;
-	top: 0;
+	top: 10px;
+	bottom: 10px;
 	padding: 3px;
-	position: absolute;
+	font-weight: bold;
+	/*position: absolute;*/
 	overflow-y: scroll;
-	overflow-x: hidden;
+	overflow-x: scroll;
 	cursor: pointer;
+    white-space:nowrap;
+}
+
+#dom-inspector-output h1 {
+	color: #14a76c;
 }
 
 #dom-inspector-wrapper {
-	width: 70%;
+	width: 67%;
 	z-index: 90;
+	overflow-y: none;
+	cursor: pointer;
 }
 
 .dom-inspector-row {
-	border: 2px solid black;
+	/*border: 2px solid #333;*/
 	margin: 3px;
 	padding: 2px;
 	display: inline-block;
@@ -31,4 +43,10 @@
 .dom-inspector-selected {
 	background-color: #f99;
 	border: 3px solid #c00;
+}
+
+.dom-inspector-node-selected {
+	background-color: #f99;
+	border: 3px solid #c00;
+	color: black;
 }
