@@ -28,13 +28,16 @@ function getCssPath(Node) {
         } else if (name != "") { // ak nema id, musime pouzit nth-child na jednoznacnu identifikaciu 
             selector = name;
 
-            var nthchild = 1;
+            if (Node.nextElementSibling) {
 
-            for (i = Node; (i !== null && i.previousElementSibling); nthchild++) {
-            	i = i.previousElementSibling;
-            };
-            
-            selector += ":nth-child(" + nthchild + ")";
+	            var nthchild = 1;
+
+	            for (i = Node; (i !== null && i.previousElementSibling); nthchild++) {
+	            	i = i.previousElementSibling;
+	            };
+	            
+	            selector += ":nth-child(" + nthchild + ")";
+	        }
         }
 
         if (selector != "") { // do cesty pridame len neprazdne selektory
@@ -209,7 +212,8 @@ function showDOM() {
  				var elems = document.querySelectorAll(unescapeHTML(path));
  				[].forEach.call(elems, function(el) { // ak islo o input na class, zmeni sa class
  					if (e.target.name == "cl") {
- 						el.classList = e.target.value;
+ 						el.className = '';
+ 						el.className = e.target.value;
  					}
  					else if (e.target.name == "id") { // ak islo o input na id, zmeni sa id
  						if (e.target.value.indexOf(" ") < 0) {
