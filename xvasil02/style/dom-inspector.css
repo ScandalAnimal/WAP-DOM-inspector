@@ -1,7 +1,14 @@
+/* DOM inspector - stylesheet
+   autor: Maros Vasilisin, xvasil02
+   2018
+ */
+
+/* okno pre vystup 
+	- fixne na pravej strane stranky, zabera tretinu obrazovky, vzdy navrchu, scrollovatelne do oboch stran
+ */
 #dom-inspector-output {
 	position: fixed;
 	width: 33%;
-	/*height: 90%;*/
 	z-index: 100;
 	background-color: #272727;
 	color: #14a76c;
@@ -11,17 +18,20 @@
 	bottom: 10px;
 	padding: 3px;
 	font-weight: bold;
-	/*position: absolute;*/
 	overflow-y: scroll;
 	overflow-x: scroll;
 	cursor: pointer;
     white-space:nowrap;
 }
 
+/* nadpis vo vystupe*/
 #dom-inspector-output h1 {
 	color: #14a76c;
 }
 
+/* obalovac pre body danej stranky 
+	- body zmensene na 2/3
+ */
 #dom-inspector-wrapper {
 	width: 67%;
 	z-index: 90;
@@ -29,22 +39,26 @@
 	cursor: pointer;
 }
 
+ /* jeden riadok vo vystupe 
+	- nastavenie margin a padding aby to nebolo tak natesno
+  */
 .dom-inspector-row {
-	/*border: 2px solid #333;*/
 	margin: 3px;
 	padding: 2px;
 	display: inline-block;
 }
 
+/* pomocny span v ktorom sa uklada css cesta, nema byt vidiet*/
 .dom-inspector-row span {
 	display: none;
 }
 
+/* styl pre vybrany element na stranke*/
 .dom-inspector-selected {
 	background-color: #f99;
 	border: 3px solid #c00;
 }
-
+/* styl pre vybrany element v DOM inspektore*/
 .dom-inspector-node-selected {
 	background-color: #f99;
 	border: 3px solid #c00;
