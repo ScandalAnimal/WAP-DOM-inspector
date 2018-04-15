@@ -28,7 +28,7 @@ function getCssPath(Node) {
         } else if (name != "") { // ak nema id, musime pouzit nth-child na jednoznacnu identifikaciu 
             selector = name;
 
-            if (Node.nextElementSibling) {
+            if (Node.nextElementSibling || Node.previousElementSibling) {
 
 	            var nthchild = 1;
 
