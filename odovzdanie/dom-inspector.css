@@ -62,8 +62,8 @@
 
 /* styl pre vybrany element na stranke*/
 .dom-inspector-selected {
-	background-color: #f99;
-	border: 3px solid #c00;
+	background-color: #f99!important;
+	border: 3px solid #c00!important;
 }
 /* styl pre vybrany element v DOM inspektore*/
 .dom-inspector-node-selected {
